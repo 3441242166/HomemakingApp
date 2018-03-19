@@ -30,7 +30,6 @@ public class CourseDao {
             ContentValues contentValues = new ContentValues();
             contentValues.put("USER", user);
             contentValues.put("ID", course.getId());
-            contentValues.put("PICTURE", course.getImgUrl());
             contentValues.put("NAME", course.getName());
             contentValues.put("COUNT", course.getNum());
             contentValues.put("MAJOR", course.getParent());
@@ -52,14 +51,13 @@ public class CourseDao {
 
         SQLiteDatabase readableDatabase = mMyDBHelper.getReadableDatabase();
         // 查询比较特别,涉及到 cursor
-        Cursor cursor = readableDatabase.rawQuery("select * from COURSE WHERE USER=?", new String[]{user});
+        Cursor cursor = readableDatabase.rawQuery("select * from COURSE", new String[]{user});
 
         List<Course> list =new ArrayList<Course>();
 
         while (cursor.moveToNext()) {
             Course task = new Course();
             task.setId(cursor.getString(cursor.getColumnIndex("ID")));
-            task.setImgUrl(cursor.getString(cursor.getColumnIndex("PICTURE")));
             task.setName(cursor.getString(cursor.getColumnIndex("NAME")));
             task.setNum(cursor.getString(cursor.getColumnIndex("COUNT")));
             task.setParent(cursor.getString(cursor.getColumnIndex("MAJOR")));

@@ -15,8 +15,6 @@ public class Course {
     private String parent;
     @SerializedName("count")
     private String num;
-    @SerializedName("picture")
-    private String imgUrl;
 
     public String getName() {
         return name;
@@ -40,14 +38,6 @@ public class Course {
 
     public void setNum(String num) {
         this.num = num;
-    }
-
-    public String getImgUrl() {
-        return imgUrl;
-    }
-
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
     }
 
     public String getId() {

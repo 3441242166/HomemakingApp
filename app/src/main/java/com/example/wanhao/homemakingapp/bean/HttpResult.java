@@ -1,23 +1,25 @@
 package com.example.wanhao.homemakingapp.bean;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by wanhao on 2017/5/13.
  */
 
 public class HttpResult<T> {
-
-    String code;
-
+    @SerializedName("status")
+    String status;
+    @SerializedName("message")
     String msg;
-
+    @SerializedName("data")
     private T data;
 
     public String getCode() {
-        return code;
+        return status;
     }
 
-    public HttpResult<T> setCode(String code) {
-        this.code = code;
+    public HttpResult<T> setCode(String status) {
+        this.status = status;
         return this;
     }
 

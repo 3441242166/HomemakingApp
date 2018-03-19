@@ -5,10 +5,8 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.example.wanhao.homemakingapp.R;
-import com.example.wanhao.homemakingapp.config.ApiConstant;
 import com.example.wanhao.homemakingapp.service.AddCourseService;
 import com.example.wanhao.homemakingapp.util.RetrofitHelper;
-import com.example.wanhao.homemakingapp.util.SaveDataUtil;
 import com.example.wanhao.homemakingapp.view.IAddCourseView;
 
 import org.json.JSONObject;
@@ -35,7 +33,7 @@ public class AddCoursePresenter implements IAddCoursePresenter {
     }
 
     @Override
-    public void add(String code) {
+    public void add(String code,String contant) {
 
         if (TextUtils.isEmpty(code)) {
             view.loadDataError("课程代码不能为空");
@@ -45,7 +43,7 @@ public class AddCoursePresenter implements IAddCoursePresenter {
 
         AddCourseService service = RetrofitHelper.get(AddCourseService.class);
 
-        service.addCourse(SaveDataUtil.getValueFromSharedPreferences(context, ApiConstant.USER_TOKEN),Integer.parseInt(code))
+        service.addCourse(null)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<Response<ResponseBody>>() {
@@ -79,5 +77,5 @@ public class AddCoursePresenter implements IAddCoursePresenter {
 }
 
 interface IAddCoursePresenter{
-    void add(String code);
+    void add(String code,String contant);
 }
